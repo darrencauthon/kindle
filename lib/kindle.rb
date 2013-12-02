@@ -87,7 +87,7 @@ module Kindle
     def get_kindle_highlights
       login
       fetch_highlights
-      return highlights.map(&:highlight)
+      highlights
     end
 
   end

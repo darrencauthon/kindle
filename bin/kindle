@@ -15,8 +15,7 @@ passwd = ask("Enter your password (This is not stored):  ") { |q| q.echo = "*" }
 begin
   k = Kindle::Kindle.new(:login => login, :password => passwd)
   puts "Getting your kindle highlights..."
-  highlights = k.get_kindle_highlights
-  puts highlights
+  puts k.get_kindle_highlights.map(&:highlight)
 rescue => ex
   puts "Crud, something went wrong..."
 end
