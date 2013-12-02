@@ -1,8 +1,8 @@
 module Kindle
   class Highlight
-    attr_reader :highlight, :asin
-    def initialize(highlight, asin)
-      @highlight, @asin = highlight, asin
+    attr_reader :highlight, :asin, :title, :author
+    def initialize(highlight, asin, title, author)
+      @highlight, @asin, @title, @author = highlight, asin, title, author
     end
   end
 end

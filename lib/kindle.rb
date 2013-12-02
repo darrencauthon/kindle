@@ -50,6 +50,8 @@ module Kindle
       asins = (page/".asin").collect{|asin| asin.text}
       if hls.length > 0 
         @current_upcoming = (page/".upcoming").first.text.split(',') rescue [] 
+        @title  = (current_page/".yourHighlightsHeader .title").text.to_s.strip
+        @author = (current_page/".yourHighlightsHeader .author").text.to_s.strip
         @current_offset = ((current_page/".yourHighlightsHeader").collect{|h| h.attributes['id'].value }).first.split('_').last
         (page/".yourHighlight").each do |hl|
           highlight = parse_highlight(hl)
@@ -75,7 +77,7 @@ module Kindle
     def parse_highlight(hl)
       highlight = (hl/".highlight").text
       asin      = (hl/".asin").text
-      Highlight.new(highlight, asin)
+      Highlight.new(highlight, asin, @title, @author)
     end
 
     def get_kindle_highlights
